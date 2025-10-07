@@ -1,0 +1,51 @@
+import express from 'express';
+import axios from 'axios';
+import crypto from 'crypto';
+import fs from 'fs';
+
+const app = express();
+const PORT = 3000;
+
+const publicKey = 'd6403b7807c973e35d0b6cbc3da7c94f';
+const privateKey = '7ee67dfce2b1f022e072f414c4bd29b0bfa5caf4';
+const baseURL = 'https://gateway.marvel.com/v1/public/characters';
+app.use(express.static("public"));
+
+function getMarvelHash(ts) {
+return crypto.createHash('md5').update(ts + privateKey + publicKey).digest('hex');
+}
+
+// app.get('/', async (req, res) => {
+// try {
+//     const heroes = ['Iron Man', 'Thor', 'Captain america', 'Hulk','Loki','Hawkeye','Black Widow','Daredevil','Black Panther','Wolverine','Punisher','Doctor Strange','Deadpool','Moon Knight','Star Lord','Nova','Ghost Rider','Blade','Invisible Woman','Silver Surfer','Quicksilver','Thanos','Gambit','Winter Soldier'];
+//     const ts = Date.now().toString();
+//     const hash = getMarvelHash(ts);
+
+//     const heroPromises = heroes.map(async name => {
+//     const response = await axios.get(baseURL, {
+//         params: {
+//             name,
+//             ts,
+//             apikey: publicKey,
+//             hash
+//         }
+//         });
+//       return response.data.data.results[0]; // return first matching character info
+//     });
+
+//     const heroesData = await Promise.all(heroPromises);
+//     res.render('index.ejs', { data: heroesData });
+//     fs.writeFileSync('data.json', JSON.stringify(heroesData));
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Error fetching Marvel heroes data');
+//   }
+// });
+
+app.get('/',(req,res)=>{
+  res.render('index.ejs',{data:JSON.parse(fs.readFileSync('data.json'))});
+})
+
+app.listen(PORT, () => {
+  console.log(`Marvel heroes API server running on port ${PORT}`);
+});
