@@ -17,7 +17,7 @@ return crypto.createHash('md5').update(ts + privateKey + publicKey).digest('hex'
 
 // app.get('/', async (req, res) => {
 // try {
-//     const heroes = ['Iron Man', 'Thor', 'Captain america', 'Hulk','Loki','Hawkeye','Black Widow','Daredevil','Black Panther','Wolverine','Punisher','Doctor Strange','Deadpool','Moon Knight','Star Lord','Nova','Ghost Rider','Blade','Invisible Woman','Silver Surfer','Quicksilver','Thanos','Gambit','Winter Soldier'];
+//     const heroes = ['Iron Man','Spider-Man (Peter Parker)','Thor', 'Captain america', 'Hulk','Loki','Hawkeye','Black Widow','Daredevil','Black Panther','Wolverine','Punisher','Doctor Strange','Deadpool','Moon Knight','Star Lord','Nova','Ghost Rider','Blade','Invisible Woman','Silver Surfer','Quicksilver','Thanos','Gambit','Winter Soldier'];
 //     const ts = Date.now().toString();
 //     const hash = getMarvelHash(ts);
 
@@ -45,6 +45,17 @@ return crypto.createHash('md5').update(ts + privateKey + publicKey).digest('hex'
 app.get('/',(req,res)=>{
   res.render('index.ejs',{data:JSON.parse(fs.readFileSync('data.json'))});
 })
+
+app.get('/character/:id', (req, res) => {
+  const reqid = parseInt(req.params.id);
+  const allcharacters = JSON.parse(fs.readFileSync('data.json'));
+  const character = allcharacters.find((character) => character && character.id === reqid);
+  if (!character) {
+    // handle not found case, like send error response or default value
+    return res.status(404).send("Item not found");
+  }
+  res.render('character.ejs', { character });
+});
 
 app.listen(PORT, () => {
   console.log(`Marvel heroes API server running on port ${PORT}`);

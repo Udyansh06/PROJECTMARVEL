@@ -22,34 +22,41 @@
 
       <div class="ironman">
         <div class="ironimg">
-          <h1 class="ih">IRON MAN </h1>
+          <h1 class="ih"style="font-size: clamp(4rem, 5vw, 5rem);">IRON MAN </h1>
         </div>
       </div>
 
 
       <div class="hulk">
         <div class="hulkimg">
-          <h1 class="ih">HULK </h1>
+          <h1 class="ih"style="font-size: clamp(4rem, 5vw, 5rem);">HULK </h1>
         </div>
       </div>
 
 
       <div class="thor">
         <div class="thorimg">
-          <h1 class="ih">thor </h1>
+          <h1 class="ih" style="font-size: clamp(4rem, 5vw, 5rem);">thor </h1>
         </div>
       </div>
 
       <div class="moon">
         <div class="moonimg">
-          <h1 class="ih">MOONNIGHT </h1>
+          <h1 class="ih"style="font-size: clamp(4rem, 5vw, 5rem);">MOONNIGHT </h1>
         </div>
       </div>
       
       <div class="contentofweb">
-        <div class="ch"><h1 style="font-size: 3rem;">Scroll down for more.</h1></div>
-        <div class="pourpose"><p style="font-size: 2rem;color: white;">This website is made by <b>Udyansh</b> and the solo pourpose of this website is to show the marvel universe and my skills to use the api of marvel.So i hope you will like it.Made by using(api,ejs,html,css,node,javascript,express,jQuery and for animations GASP.)</p></div>
+        <div class="ch">
+          <h1 style="font-size: min(max(2.5rem, 2.5vw), 4rem);"class="mdh">Scroll down for more.</h1>
+        </div>
+        <div class="pourpose">
+          <p style="font-size: min(max(1.2rem, 2vw), 2rem); color: white;"class="md">
+            This website is made by <b>Udyansh</b> and the solo pourpose of this website is to show the marvel universe and my skills to use the api of marvel.So i hope you will like it.Made by using(api,ejs,html,css,node,javascript,express,jQuery and for animations GASP.)
+          </p>
+        </div>
       </div>
+      
 
 
     </div>
@@ -64,18 +71,19 @@
             
             <% for (let i = 0; i < data.length; i++) { %>
                 <% if (data[i] && data[i].thumbnail) { %>
-                    <div class="one">
+                  <a href="/character/<%= data[i].id %>"><div class="one">
                     <div class="pic">
-                        <img src="<%= data[i].thumbnail.path %>.jpg" alt="">
+                      <img src="<%= data[i].thumbnail.path %>.jpg" alt="">
                     </div>
                     <div class="name">
                         <div class="reddivani">
                         <div class="chn">
-                            <h4 class="n"><%= data[i].name %></h4>
+                          <h4 class="n"style="font-size: min(max(0.8rem, 1vw), 1rem);"><%= data[i].name %></h4>
                         </div>
                         </div>
                     </div>
                     </div>
+                    </a>
                 <% } %>
                 <% } %>
                     
@@ -86,40 +94,33 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
 <script>
     gsap.registerPlugin(ScrollTrigger);
-    gsap.fromTo(".one", 
-  {
-    y: 30,
-    opacity: 1
-  }, 
-  {
-    y: 0,
-    opacity: 1,
-    ease: 'power1.out',
-    scrollTrigger: {
-      trigger: ".one",
-      start: "top 100%",
-      end: "top 60%",
-      scrub:true
-    }
-  }
-);
-    gsap.fromTo(".headline", 
-  {
-    y: 30,
-    opacity: 0
-  }, 
-  {
-    y: 0,
-    opacity: 1,
-    ease: 'power1.out',
-    scrollTrigger: {
-      trigger: ".headline",
-      start: "top 100%",
-      end: "top 60%",
-      scrub:true
-    }
-  }
-);
+
+
+gsap.from(".one", {
+        scrollTrigger: {
+            trigger: ".one",
+            start: "top 100%",
+            end: "top 60%",
+            ease: 'power1.out',
+            scrub: true
+        },
+        y: 30,
+        
+        opacity: 0
+    });
+
+    gsap.from(".headline", {
+        scrollTrigger: {
+            trigger: ".headline",
+            start: "top 100%",
+            end: "top 60%",
+            ease: 'power1.out',
+            scrub: true
+        },
+        y: 30,
+        
+        opacity: 0
+    });
 
     gsap.from(".n", {
         scrollTrigger: {
@@ -141,7 +142,8 @@
             start: "top 100%",
             end: "top 20%",
             ease: 'power1.out',
-            scrub: true
+            scrub: true,
+            snap: true
         },
         opacity: 0.3,
         width:'80%',
@@ -159,6 +161,7 @@
             end: "top 20%",
             ease: 'power1.out',
             scrub: true,
+            
         },
         opacity: 0,
         y: 30
@@ -190,7 +193,8 @@ gsap.from(".ironman", {
     start: "top top",
       end: () => `+=${document.querySelector(".ironman").offsetHeight}`,
     scrub: true, 
-    pin: true 
+    pin: true ,
+    snap: true,
   },
   opacity: 1,
   
@@ -202,7 +206,7 @@ gsap.from(".ironimg", {
   scrollTrigger: {
     trigger: ".ironimg",
     start: "bottom 100%",
-    end: "bottom 60%",
+    end: "bottom 90%",
     ease:"elastic(1, 1, false)",
     scrub: true,
 
@@ -224,6 +228,7 @@ gsap.to(".hulk", {
     end: () => `+=${document.querySelector(".hulk").offsetHeight}`,
     scrub: true,
     pin: true,
+    snap: true,
   }
 });
 
@@ -231,7 +236,7 @@ gsap.from(".hulkimg", {
   scrollTrigger: {
     trigger: ".hulkimg",
     start: "bottom 100%",
-    end: "bottom 60%",
+    end: "bottom 90%",
     ease:"elastic(1, 1, false)",
     scrub: true,
 
@@ -252,9 +257,8 @@ gsap.to(".thor", {
     end: () => `+=${document.querySelector(".thor").offsetHeight}`,
     scrub: true,
     pin: true,
-    pinSpacing: false, // so it stacks directly on top
-    // delay pinning after Hulk
-    // you can also add delay or offset if needed
+    pinSpacing: false,
+    snap: true,
   }
 });
 
@@ -262,7 +266,7 @@ gsap.from(".thorimg", {
   scrollTrigger: {
     trigger: ".thorimg",
     start: "bottom 100%",
-    end: "bottom 60%",
+    end: "bottom 90%",
     ease:"elastic(1, 1, false)",
     scrub: true,
 
@@ -283,9 +287,8 @@ gsap.to(".moon", {
     end: () => `+=${document.querySelector(".moon").offsetHeight}`,
     scrub: true,
     pin: true,
-    pinSpacing: false, // so it stacks directly on top
-    // delay pinning after Hulk
-    // you can also add delay or offset if needed
+    pinSpacing: false,
+    snap: true,
   }
 });
 
@@ -293,7 +296,7 @@ gsap.from(".moonimg", {
   scrollTrigger: {
     trigger: ".moonimg",
     start: "bottom 100%",
-    end: "bottom 60%",
+    end: "bottom 90%",
     ease:"elastic(1, 1, false)",
     scrub: true,
 
@@ -314,11 +317,42 @@ gsap.to(".firstdiv", {
     end: () => `+=${document.querySelector(".firstdiv").offsetHeight}`,
     scrub: true,
     pin: true,
-    pinSpacing: false, // so it stacks directly on top
-    // delay pinning after Hulk
-    // you can also add delay or offset if needed
+    pinSpacing: false,
+    snap: true,
   }
 });
+
+gsap.from(".mdh", {
+  scrollTrigger: {
+    trigger: ".mdh",
+    start: "bottom 100%",
+    end: "bottom 50%",
+    ease:"elastic(1, 1, false)",
+    scrub: true,
+
+  },
+  opacity: 0, 
+  y: 30, 
+  ease: "slow(1, 1, false)",
+  duration: 2
+  
+})
+
+gsap.from(".md", {
+  scrollTrigger: {
+    trigger: ".md",
+    start: "bottom 100%",
+    end: "bottom 50%",
+    ease:"elastic(1, 1, false)",
+    scrub: true,
+
+  },
+  opacity: 0, 
+  y: 30, 
+  ease: "slow(1, 1, false)",
+  duration: 2
+  
+})
 
 
 </script>

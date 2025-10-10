@@ -107,11 +107,11 @@ body {
     }
     .chn{
         /* z-index: 2; */
-        width: 150px;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 10px;
+        margin-top: 20px;
         
     }
     .n{
@@ -143,7 +143,7 @@ body {
     }
     .video{
         width: 100%;
-        height: 100vh;
+        height: 100%;
         object-fit: cover;
     }
     .headline{
@@ -311,7 +311,7 @@ body {
             width: 100%;
             height: 100vh;
             background-color: #202020;
-            background-image: url("image/generated-image\ \(4\).png");
+            
             background-size:cover;
             background-position: center;
             display: flex;
@@ -322,4 +322,13 @@ body {
         }
         .pourpose{
             width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+        a{
+            text-decoration: none;
+            color: white;
         }
