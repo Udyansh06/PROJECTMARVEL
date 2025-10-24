@@ -35,7 +35,9 @@ app.get('/character/:id', (req, res) => {
 app.get('/test-static', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'index.css'));
 });
-
+app.get('/test-staticv', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'mt.mp4'));
+});
 
 
 
