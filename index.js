@@ -4,8 +4,7 @@ import crypto from 'crypto';
 import fs from 'fs';
 
 const app = express();
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 const publicKey = 'd6403b7807c973e35d0b6cbc3da7c94f';
 const privateKey = '7ee67dfce2b1f022e072f414c4bd29b0bfa5caf4';
 const baseURL = 'https://gateway.marvel.com/v1/public/characters';
@@ -58,5 +57,5 @@ app.get('/character/:id', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Marvel heroes API server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
