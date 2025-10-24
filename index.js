@@ -56,7 +56,12 @@ app.get('/test-statici5', (req, res) => {
 app.get('/test-statici6', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public','image', 'download__9_-removebg-preview.png'));
 })
-
+app.get('/test-statici7', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'generated-image3.png'));
+})
+app.get('/test-statici8', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'd71ad657-6625-4382-bf46-a9a91dbb5bc1-removebg-preview.png'));
+})
 
 // import express from 'express';
 // import axios from 'axios';
