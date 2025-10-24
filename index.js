@@ -4,8 +4,8 @@ import crypto from 'crypto';
 import fs from 'fs';
 
 const app = express();
-const publicKey = 'd6403b7807c973e35d0b6cbc3da7c94f';
-const privateKey = '7ee67dfce2b1f022e072f414c4bd29b0bfa5caf4';
+const publicKey = process.env.PUBLIC_KEY;
+const privateKey = process.env.PRIVATE_KEY;
 const baseURL = 'https://gateway.marvel.com/v1/public/characters';
 
 app.use(express.static("public"));
