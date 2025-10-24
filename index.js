@@ -65,6 +65,9 @@ app.get('/test-statici7', (req, res) => {
 app.get('/test-statici8', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public','image', 'd71ad657-6625-4382-bf46-a9a91dbb5bc1-removebg-preview.png'));
 })
+app.get('/test-statici9', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'imgi_1_marvel-rivals-characters-4k-wallpaper-uhdpaper.com-89@5@a.jpg'));
+})
 
 // import express from 'express';
 // import axios from 'axios';
