@@ -4,12 +4,11 @@ import path from 'path';
 
 const app = express();
 
-// Set up EJS views
+app.use(express.static('public'));
+
+// Then set view engine etc
 app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'views'));
-
-// Serve static files
-app.use(express.static('public'));
 
 // Helper to read data.json
 function getMarvelData() {
