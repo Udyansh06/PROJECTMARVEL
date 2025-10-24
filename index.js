@@ -44,6 +44,9 @@ app.get('/test-statici1', (req, res) => {
 app.get('/test-statici2', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public','image', '67c55c4b-aa98-4257-aa86-227ce0d33c8f-removebg-preview.png'));
 })
+app.get('/test-statici3', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'generated-image1.png'));
+})
 
 
 
