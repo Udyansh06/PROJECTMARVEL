@@ -50,6 +50,9 @@ app.get('/test-statici3', (req, res) => {
 app.get('/test-statici4', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public','image', 'Hulk_PNG-removebg-preview.png'));
 })
+app.get('/test-statici5', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'generated-image2.png'));
+})
 
 
 // import express from 'express';
