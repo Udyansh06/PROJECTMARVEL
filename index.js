@@ -68,6 +68,9 @@ app.get('/test-statici8', (req, res) => {
 app.get('/test-statici9', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public','image', 'imgi_1_marvel-rivals-characters-4k-wallpaper-uhdpaper.com-89@5@a.jpg'));
 })
+app.get('/test-statici10', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'ChatGPT Image Oct 6, 2025, 05_26_16 PM.png'));
+})
 
 // import express from 'express';
 // import axios from 'axios';
