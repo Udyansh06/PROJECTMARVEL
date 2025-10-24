@@ -39,9 +39,11 @@ app.get('/test-staticv', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public','image', 'mt.mp4'));
 });
 app.get('/test-statici1', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'f03fc40052d64b0998a654e0c316b3b9.jpeg'));
+})
+app.get('/test-statici2', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public','image', '67c55c4b-aa98-4257-aa86-227ce0d33c8f-removebg-preview.png'));
 })
-
 
 
 
