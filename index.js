@@ -32,8 +32,9 @@ app.get('/character/:id', (req, res) => {
   }
   res.render('character.ejs', { character });
 });
-
-
+app.get('/test-static', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'index.css'));
+});
 
 
 
