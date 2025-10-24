@@ -35,20 +35,78 @@ function getMarvelHash(ts) {
 //   }
 // });
 
-app.get('/', (req, res) => {
-  res.render('index.ejs', { data: JSON.parse(fs.readFileSync('data.json')) });
+// app.get('/', (req, res) => {
+//   res.render('index.ejs', { data: JSON.parse(fs.readFileSync('data.json')) });
+// });
+
+// app.get('/character/:id', (req, res) => {
+//   const reqid = parseInt(req.params.id);
+//   const allcharacters = JSON.parse(fs.readFileSync('data.json'));
+//   const character = allcharacters.find(
+//     (character) => character && character.id === reqid
+//   );
+//   if (!character) {
+//     return res.status(404).send("Item not found");
+//   }
+//   res.render('character.ejs', { character });
+// });
+
+const heroes = [
+  'Iron Man','Spider-Man (Peter Parker)','Thor', 'Captain america', 'Hulk','Loki',
+  'Hawkeye','Black Widow','Daredevil','Black Panther','Wolverine','Punisher',
+  'Doctor Strange','Deadpool','Moon Knight','Star Lord','Nova','Ghost Rider',
+  'Blade','Invisible Woman','Silver Surfer','Quicksilver','Thanos','Gambit','Winter Soldier'
+];
+
+app.get('/', async (req, res) => {
+  try {
+    const ts = Date.now().toString();
+    const hash = getMarvelHash(ts);
+    const heroPromises = heroes.map(async name => {
+      const response = await axios.get(baseURL, {
+        params: { name, ts, apikey: publicKey, hash }
+      });
+      return response.data.data.results[0];
+    });
+    const heroesData = await Promise.all(heroPromises);
+    res.render('index.ejs', { data: heroesData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching Marvel heroes data');
+  }
 });
 
-app.get('/character/:id', (req, res) => {
+app.get('/character/:id', async (req, res) => {
   const reqid = parseInt(req.params.id);
-  const allcharacters = JSON.parse(fs.readFileSync('data.json'));
-  const character = allcharacters.find(
-    (character) => character && character.id === reqid
-  );
-  if (!character) {
-    return res.status(404).send("Item not found");
+
+  // Fetch hero data again to find individual character
+  try {
+    const ts = Date.now().toString();
+    const hash = getMarvelHash(ts);
+
+    // Get all characters
+    const heroPromises = heroes.map(async name => {
+      const response = await axios.get(baseURL, {
+        params: { name, ts, apikey: publicKey, hash }
+      });
+      return response.data.data.results[0];
+    });
+    const allcharacters = await Promise.all(heroPromises);
+
+    const character = allcharacters.find(
+      character => character && character.id === reqid
+    );
+
+    if (!character) {
+      return res.status(404).send("Item not found");
+    }
+
+    res.render('character.ejs', { character });
+  } catch (error) {
+    res.status(500).send('Error fetching character');
   }
-  res.render('character.ejs', { character });
 });
+
+// No app.listen!
 
 export default app;
