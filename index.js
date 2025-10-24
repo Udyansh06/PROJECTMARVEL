@@ -38,6 +38,9 @@ app.get('/test-static', (req, res) => {
 app.get('/test-staticv', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public','image', 'mt.mp4'));
 });
+app.get('/test-statici1', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public','image', 'f03fc40052d64b0998a654e0c316b3b9.jpeg'));
+})
 
 
 
