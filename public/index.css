@@ -229,7 +229,7 @@ body {
             width: 100%;
             height: 100vh;
             background-color: #3498db;
-            background-image: url("image/generated-image1.png");
+            background-image: url("/image/generated-image1.png");
             background-size:cover;
             background-position: center;
             display: flex;
@@ -242,7 +242,7 @@ body {
             width: 85%;
             height: 75%;
             overflow: hidden;
-            background-image: url("image/Hulk_PNG-removebg-preview.png");
+            background-image: url("/image/Hulk_PNG-removebg-preview.png");
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -257,7 +257,7 @@ body {
             width: 100%;
             height: 100vh;
             background-color: #3498db;
-            background-image: url("image/generated-image2.png");
+            background-image: url("/image/generated-image2.png");
             background-size:cover;
             background-position: center;
             display: flex;
@@ -270,7 +270,7 @@ body {
             width: 85%;
             height: 75%;
             overflow: hidden;
-            background-image: url("image/download__9_-removebg-preview.png");
+            background-image: url("/image/download__9_-removebg-preview.png");
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -284,7 +284,7 @@ body {
             width: 100%;
             height: 100vh;
             background-color: #3498db;
-            background-image: url("image/generated-image3.png");
+            background-image: url("/image/generated-image3.png");
             background-size:cover;
             background-position: center;
             display: flex;
@@ -297,7 +297,7 @@ body {
             width: 85%;
             height: 75%;
             overflow: hidden;
-            background-image: url("image/d71ad657-6625-4382-bf46-a9a91dbb5bc1-removebg-preview.png");
+            background-image: url("/image/d71ad657-6625-4382-bf46-a9a91dbb5bc1-removebg-preview.png");
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
