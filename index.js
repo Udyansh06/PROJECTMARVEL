@@ -3,42 +3,38 @@ import fs from 'fs';
 import path from 'path';
 
 const app = express();
-<<<<<<< HEAD
-=======
-const publicKey = process.env.PUBLIC_KEY;
-const privateKey = process.env.PRIVATE_KEY;
-const baseURL = 'https://gateway.marvel.com/v1/public/characters';
->>>>>>> dd602b84ae3c86752001b63d35ef1d282f6a255b
 
-app.use(express.static("public"));
+// Set up EJS views
 app.set('view engine', 'ejs');
-app.set('views', path.join(process.cwd(), 'views')); // assumes your EJS files are in /views
+app.set('views', path.join(process.cwd(), 'views'));
 
-// Pre-load static JSON data once at startup (optional for performance)
-const dataPath = path.join(process.cwd(), 'data', 'data.json');
+// Serve static files
+app.use(express.static('public'));
 
-// Reads JSON file every request (useful if you want always-fresh data after each deployment)
+// Helper to read data.json
 function getMarvelData() {
+  const dataPath = path.join(process.cwd(), 'data', 'data.json');
   return JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 }
 
+// Route: Home page
 app.get('/', (req, res) => {
   const heroesData = getMarvelData();
   res.render('index.ejs', { data: heroesData });
 });
 
+// Route: Character detail
 app.get('/character/:id', (req, res) => {
   const reqid = parseInt(req.params.id);
   const allcharacters = getMarvelData();
-  const character = allcharacters.find((character) => character && character.id === reqid);
+  const character = allcharacters.find(c => c && c.id === reqid);
   if (!character) {
     return res.status(404).send("Item not found");
   }
   res.render('character.ejs', { character });
 });
 
-// No app.listen()
-
+// No app.listen! Use export for Vercel
 export default app;
 
 
