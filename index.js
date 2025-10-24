@@ -34,8 +34,7 @@ app.get('/character/:id', (req, res) => {
   res.render('character.ejs', { character });
 });
 
-// No app.listen! Use export for Vercel
-export default app;
+
 
 
 // import express from 'express';
@@ -91,4 +90,4 @@ export default app;
 //   res.render('character.ejs', { character });
 // });
 
-// export default app;
+export default app;
