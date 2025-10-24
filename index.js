@@ -3,6 +3,12 @@ import fs from 'fs';
 import path from 'path';
 
 const app = express();
+<<<<<<< HEAD
+=======
+const publicKey = process.env.PUBLIC_KEY;
+const privateKey = process.env.PRIVATE_KEY;
+const baseURL = 'https://gateway.marvel.com/v1/public/characters';
+>>>>>>> dd602b84ae3c86752001b63d35ef1d282f6a255b
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
