@@ -24,13 +24,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("image/imgi_1_marvel-rivals-characters-4k-wallpaper-uhdpaper.com-89@5@a.jpg");
+    background-image: url("/image/imgi_1_marvel-rivals-characters-4k-wallpaper-uhdpaper.com-89@5@a.jpg");
     background-size:cover;
     background-position: center;
     flex-direction: column;
     }
     .marvel{
-        background-image: url('image/ChatGPT\ Image\ Oct\ 6\,\ 2025\,\ 05_26_16\ PM.png');
+        background-image: url('/image/ChatGPT\ Image\ Oct\ 6\,\ 2025\,\ 05_26_16\ PM.png');
         width: 20%;
         height: 20%;
         background-position: center;
